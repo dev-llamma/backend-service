@@ -32,7 +32,7 @@ public class GeminiController {
     }
 
 
-    @GetMapping("/get-banner-data")
+    @PostMapping("/get-banner-data")
     public HttpStatus getBannerData(@RequestBody BannerRequest bannerRequest)
     {
         return HttpStatus.OK;
