@@ -35,6 +35,7 @@ public class GeminiController {
     @PostMapping("/get-banner-data")
     public HttpStatus getBannerData(@RequestBody BannerRequest bannerRequest)
     {
+        //Banner data goes to llm send post entity request (header content) ..response is going to be url. or image name
         return HttpStatus.OK;
     }
 
