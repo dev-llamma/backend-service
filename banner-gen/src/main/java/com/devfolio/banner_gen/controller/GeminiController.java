@@ -6,7 +6,6 @@ import com.devfolio.banner_gen.service.GeminiService;
 import com.devfolio.banner_gen.service.StorageService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -67,11 +66,12 @@ public class GeminiController {
         }
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        LLMResponse requestBody = new LLMResponse();
+        LLMRequest requestBody = new LLMRequest();
         requestBody.setSelectedItem(bannerRequest.getSelectedItem());
         requestBody.setPromotionalOffers(bannerRequest.getPromotionalOffers());
         requestBody.setListOfProductImages(list);
-        HttpEntity<LLMResponse> entity = new HttpEntity<>(requestBody, headers);
+        requestBody.setThemeAndPalette(bannerRequest.getThemeAndPalette());
+        HttpEntity<LLMRequest> entity = new HttpEntity<>(requestBody, headers);
 //        ResponseEntity<String> response = restTemplate.exchange(apiUrl, HttpMethod.POST, entity, String.class);
         bannerResponse.setUrl(list);//replace this with response url from llm
         return ResponseEntity.ok(bannerResponse);

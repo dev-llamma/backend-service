@@ -4,11 +4,13 @@ import lombok.Data;
 
 import java.util.List;
 @Data
-public class LLMResponse {
+public class LLMRequest {
 
     List<String> listOfProductImages;
 
     List<String> promotionalOffers;
+
+    ThemeAndPalette themeAndPalette;
 
     Header selectedItem;
 }
