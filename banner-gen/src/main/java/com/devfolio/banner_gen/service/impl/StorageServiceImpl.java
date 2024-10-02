@@ -22,8 +22,8 @@ public class StorageServiceImpl implements StorageService {
     }
 
     @Override
-    public String getImageUrl() {
-        Blob blob = storage.get("banner-bucket", "vecteezy_abstract-paper-background-design-for-presentation-banner_25755008.jpg");
+    public String getImageUrl(String imageName) {
+        Blob blob = storage.get("banner-bucket", imageName);
 
         if (blob == null) {
             throw new RuntimeException("No such object in GCS");
