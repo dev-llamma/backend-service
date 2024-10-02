@@ -1,4 +1,6 @@
 package com.devfolio.banner_gen.controller;
+import com.devfolio.banner_gen.model.GeminiResponse;
+import com.devfolio.banner_gen.model.GeminiResponseDTO;
 import com.devfolio.banner_gen.service.GeminiService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.CloseStatus;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 @Slf4j
@@ -32,10 +35,10 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String usermessage = message.getPayload();
-        String response = this.geminiService.getGeminiResponse(usermessage);
+        List<GeminiResponse> response = this.geminiService.getGeminiResponse(usermessage);
         for (WebSocketSession webSocketSession : sessions.values()) {
             if (webSocketSession.isOpen()) {
-                TextMessage responseMessage = new TextMessage(response);
+                TextMessage responseMessage = new TextMessage(response.toString());
                 log.info("message: "+message);
                 webSocketSession.sendMessage(responseMessage);
             }

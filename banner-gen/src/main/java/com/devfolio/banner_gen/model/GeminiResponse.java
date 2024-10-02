@@ -1,14 +1,14 @@
 package com.devfolio.banner_gen.model;
 
+import lombok.Data;
+
+@Data
 public class GeminiResponse {
-    private String text;
 
-    // Getters and setters
-    public String getText() {
-        return text;
-    }
+    private String content;
 
-    public void setText(String text) {
-        this.text = text;
-    }
+    private String header;
+
+    private String subheader;
+
 }
